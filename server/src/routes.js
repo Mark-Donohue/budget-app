@@ -1,11 +1,13 @@
-module.exports = (app) => {
-  app.get('/status', (req, res) => {
-    res.send('OK');
-  });
+/* eslint-disable max-len */
+const StatusController = require('./controllers/StatusController');
+const AuthenticationController = require('./controllers/AuthenticationController');
 
-  app.post('/register', (req, res) => {
-    res.send({
-      message: `Welcome, ${req.body.email}!`,
-    });
-  });
+const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy');
+
+module.exports = (app) => {
+  app.get('/status', StatusController.status);
+
+  app.post('/register',
+      AuthenticationControllerPolicy.register,
+      AuthenticationController.register);
 };

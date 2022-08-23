@@ -5,7 +5,7 @@ const config = require('../config/config');
 const db = {};
 
 const sequelize = new Sequelize(
-    config.db.name,
+    config.db.database,
     config.db.user,
     config.db.password,
     config.db.options,
@@ -18,8 +18,15 @@ fs.readdirSync(__dirname)
     .forEach((file) => {
       // eslint-disable-next-line max-len
       const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+      // const model = sequelize.import(path.join(__dirname, file));
       db[model.name] = model;
     });
+
+Object.keys(db).forEach(function(modelName) {
+  if ('associate' in db[modelName]) {
+    db[modelName].associate(db);
+  }
+});
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

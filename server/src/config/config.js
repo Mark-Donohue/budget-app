@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  port: 8081,
+  port: process.env.PORT || 8081,
   db: {
-    name: process.env.DB_NAME || 'budget-app',
+    database: process.env.DB_NAME || 'budget-app',
     user: process.env.DB_USER || 'budget-app',
     password: process.env.DB_PASS || 'budget-app',
     options: {
