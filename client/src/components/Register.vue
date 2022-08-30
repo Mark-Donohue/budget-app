@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
@@ -19,6 +19,16 @@
       </div>
     </v-flex>
   </v-layout>
+</template> -->
+<template>
+  <div class="container">
+    <v-text-field
+      label="Email"
+      hide-details="auto"
+      prepend-icon="mdi-phone"
+    ></v-text-field>
+    <v-text-field label="Password"></v-text-field>
+  </div>
 </template>
 
 <script>
@@ -48,4 +58,7 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  border: 1px solid black;
+}
 </style>
